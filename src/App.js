@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.scss';
 import { useState } from 'react';
 
@@ -16,10 +15,16 @@ function App() {
     let burning = Weight / 10;
     let gramsLeft = grams - (burning * Time)
 
-    if ((gramsLeft / (Weight * 0.7)) < 0 ) {
-        setOutcome(0);
+    if (Gender === ''){
+      alert('Please check one of the gender boxes.')
+    } 
+    else if (Weight === 0)    {
+      alert('Please enter your weight.')
     }
-    else if (Gender == 'male'){
+    else if ((gramsLeft / (Weight * 0.7)) < 0 ) {
+      setOutcome(0);
+    }
+    else if (Gender === 'male'){
       setOutcome(gramsLeft / (Weight * 0.7))
     } 
     else {
@@ -28,9 +33,11 @@ function App() {
   };
   
   return (
-    <div>
-    <h1> Calculating blood alcohol level</h1>
+    <div id='base'>
+      
+   
     <form>
+    <h1> Calculating blood alcohol level</h1>
       <div>
       <label htmlFor=""> Weight </label>
       <input type="number" value={Weight} onInput={e => setWeight(e.target.value)}/>
