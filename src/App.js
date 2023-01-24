@@ -37,7 +37,7 @@ function App() {
       
    
     <form>
-    <h1> Calculating blood alcohol level</h1>
+    <h1> Blood alcohol level calculator</h1>
       <div>
       <label htmlFor=""> Weight </label>
       <input type="number" value={Weight} onInput={e => setWeight(e.target.value)}/>
