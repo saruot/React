@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Ingredient(props, index) {
     const base = props.cocktail;
-    
     const [newArr, setNewArr] = useState([]);
-
     useEffect(() => {
         let arrOfIngreds = [base.strIngredient1, 
                     base.strIngredient2, 
@@ -39,12 +37,10 @@ export default function Ingredient(props, index) {
       let noNullIngred = arrOfIngreds.filter((item) => item !== null)
       let noNullMeasure = arrOfMeasures.filter((item) => item !== null)
       const tempArr = [];
-
        for (let i = 0; i < noNullIngred.length; i++) {
                     tempArr.push({ingred : noNullIngred[i], measure : noNullMeasure[i]})
                 }
                           setNewArr(tempArr)
-        
             }, [])
     
 
@@ -53,6 +49,8 @@ export default function Ingredient(props, index) {
              <div key={index}>
                 <h1> {props.cocktail.strDrink} </h1>
                 <h2>Glass</h2>
+                <p> {props.cocktail.strGlass}</p>
+                <h2>Ingredients</h2>
                 <ul>
                         {newArr.map((ingred, i) => (
                             <li key={i}>
@@ -60,7 +58,6 @@ export default function Ingredient(props, index) {
                             </li>
                         ))}
                 </ul>
-                 <p> {props.cocktail.strGlass}</p>
                  <h2>Instructions</h2>
                  <p>{props.cocktail.strInstructions}</p>
                   <img src={props.cocktail.strDrinkThumb} alt="" /> 

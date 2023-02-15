@@ -66,7 +66,10 @@ export default function Cocktail() {
         axios.get(address)
             .then((response) => {
                // Base for accessing needed data from api
-                const base = response.data.drinks
+               const base = response.data.drinks
+               if (base.strIngredient1 === null) {
+                return
+               }
                 setCocktailsList(base)
                //  Arrays of ingredients and measures returned by the API
                 let arrOfIngreds = [base.strIngredient1, 
@@ -108,14 +111,15 @@ export default function Cocktail() {
                 }
                
             }) .catch(err => {
-                alert(err)
+                alert('Invalid search')
+                console.log(err);
             }
             )
     }
 
     return (
         <div>
-             <input type="text" onInput={e => setSearchInput(e.target.value)} /> <button onClick={() => Hae()}>Paina</button>
+             <input placeholder='Kirjoita hakeaksesi' type="text" onInput={e => setSearchInput(e.target.value)} /> <button onClick={() => Hae()}>Hae</button>
              {CocktailsList.map((cocktail, index) => (
                 <Ingredient cocktail={cocktail} index={index}/>
              )
