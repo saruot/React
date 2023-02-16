@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 export default function Ingredient(props, index) {
+    // Base contains all the data passed on from the API search
     const base = props.cocktail;
     const [newArr, setNewArr] = useState([]);
     useEffect(() => {
+        // Setting up arrays for ingredients and measures. These will be
+        // mapped out later to have a format of ingred:measure in the <li>
         let arrOfIngreds = [base.strIngredient1, 
                     base.strIngredient2, 
                     base.strIngredient3, 
